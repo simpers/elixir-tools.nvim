@@ -30,6 +30,13 @@ describe("utils", function()
       assert.are.equal(project_dir, result)
     end)
 
+    it("finds elixir project root dir in a mono-repo without a mix.exs at the root of the repo", function()
+      local project_dir = root_dir .. "/tests/fixtures/project_c"
+      local result = utils.root_dir(project_dir .. "/elixir/app_one/lib/app_one.ex")
+
+      assert.are.equal(project_dir, result)
+    end)
+
     it("returns nil if no elixir project root dir is found", function()
       local result = utils.root_dir()
 
